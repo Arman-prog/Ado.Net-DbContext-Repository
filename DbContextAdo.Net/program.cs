@@ -15,30 +15,40 @@ namespace DbContextAdoNet
         static void Main()
         {
             var context = new DbContext(connectionString);
-            /*
-           var students = context.AsEnumerable<Student>("SELECT * FROM Student").ToList();
-           var teachers = context.AsEnumerable<Teacher>("SELECT * FROM Teacher").ToList();
-           var universities = context.AsEnumerable<University>("SELECT * FROM University").ToList();
-           var addresses = context.AsEnumerable<Address>("SELECT * FROM Address").ToList();
-           var teachersuniversity = context.AsEnumerable<Teacher_University>("SELECT * FROM Teacher_University").ToList();
 
-           var query1 = from s in students
-                        from u in universities
+            BaseRepository<Student> studentrep = new BaseRepository<Student>(context);
+            var studentlist = studentrep.AsEnumerable().ToList();
+
+            BaseRepository<Teacher> teacherrep = new BaseRepository<Teacher>(context);
+            var teacherlist = teacherrep.AsEnumerable().ToList();
+
+            BaseRepository<University> univerrep = new BaseRepository<University>(context);
+            var univerlist = univerrep.AsEnumerable().ToList();
+
+            BaseRepository<Teacher_University> teach_univerrep = new BaseRepository<Teacher_University>(context);
+            var teach_univerlist = teach_univerrep.AsEnumerable().ToList();
+
+            BaseRepository<Address> addressrep = new BaseRepository<Address>(context);
+            var addresslist = addressrep.AsEnumerable().ToList();
+
+
+            var query1 = from s in studentlist
+                        from u in univerlist
                         where u.Id == s.UniversityId
-                        from a in addresses
-                        where a.Id == s.AddressId
+                        from a in addresslist
+                         where a.Id == s.AddressId
                         select (s.FirstName, s.LastName,
                                 a.City, a.StreetOrDistrict, a.House, a.Appartment,
                                 u.Name);
 
            var stquery = query1.ToList();
 
-           var query2 = from tu in teachersuniversity
-                        from t in teachers
+           var query2 = from tu in teach_univerlist
+                        from t in teacherlist
                         where t.Id == tu.TeacherId
-                        from u in universities
+                        from u in univerlist
                         where u.Id == tu.UniversityId
-                        from a in addresses
+                        from a in addresslist
                         where a.Id == u.AddressId
                         select (t.FirstName, t.LastName,
                                u.Name, a.City);
@@ -59,7 +69,7 @@ namespace DbContextAdoNet
                Console.WriteLine(item);
            }
 
-           */
+           /*
             var rep = new BaseRepository<University>(context);
 
             SqlParameter par1 = new SqlParameter("Name", "MyTEST_NEW");
@@ -76,13 +86,13 @@ namespace DbContextAdoNet
             };
 
             rep.Add(univer);
-            var list = rep.AsEnumerable("SELECT * FROM University").ToList();
+            var list = rep.AsEnumerable().ToList();
 
             foreach (University item in list)
             {
                 Console.WriteLine(item);
             }
-
+            */
         }
     }
 

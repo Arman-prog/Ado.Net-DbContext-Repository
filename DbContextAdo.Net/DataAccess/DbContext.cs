@@ -15,7 +15,7 @@ namespace DbContextAdoNet
             this.connectionString = connectionString;
         }
 
-        public IEnumerable<IDataReader> Execute(string Sqlexpression)           
+        public IEnumerable<IDataReader> Execute(string Sqlexpression)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -46,18 +46,8 @@ namespace DbContextAdoNet
                     connection.Open();
 
                 SqlCommand command = new SqlCommand(sqlexpression, connection);
-                //SqlParameter idParam = new SqlParameter
-                //{
-                //    ParameterName = "@id",
-                //    SqlDbType = SqlDbType.Int,
-                //    Direction = ParameterDirection.Output
-                //};
                 command.Parameters.AddRange(parameters);
-                //command.Parameters.Add(idParam);
-
-               command.ExecuteNonQuery();
-
-                //return (int)idParam.Value;
+                command.ExecuteNonQuery();
             }
 
         }
@@ -103,7 +93,7 @@ namespace DbContextAdoNet
             StringBuilder values = new StringBuilder();
             foreach (var parameter in parameters)
             {
-               columns.Append("[").Append(parameter.ParameterName).Append("]").Append(",");
+                columns.Append("[").Append(parameter.ParameterName).Append("]").Append(",");
                 values.Append("@").Append(parameter.ParameterName).Append(",");
             }
 
@@ -123,7 +113,7 @@ namespace DbContextAdoNet
 
             return updatevalues.ToString().TrimEnd(',');
         }
-      
+
 
     }
 }

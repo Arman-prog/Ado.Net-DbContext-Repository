@@ -1,4 +1,5 @@
-﻿using DbContextAdoNet.Extensions;
+﻿using DbContextAdoNet.DataAccess;
+using DbContextAdoNet.Extensions;
 using System.Collections.Generic;
 
 namespace DbContextAdoNet.Repositories
@@ -13,8 +14,11 @@ namespace DbContextAdoNet.Repositories
             this._dbContext = dbContext;
         }
 
-        public IEnumerable<TModel> AsEnumerable(string query)
+        public IEnumerable<TModel> AsEnumerable()
         {
+            var type = typeof(TModel);
+            string query = string.Format(Queries.selectWithTableName, type.Name);
+            
             foreach (var reader in _dbContext.Execute(query))
             {
                 yield return reader.ToModel<TModel>();
