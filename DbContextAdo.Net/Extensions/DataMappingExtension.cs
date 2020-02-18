@@ -34,7 +34,7 @@ namespace DbContextAdoNet.Extensions
                     if (!dataReader.IsDBNull(i))
                     {
                         members[i].SetValue(source, dataReader.GetValue(i));
-                    }               
+                    }
                 }
 
             }
@@ -42,7 +42,19 @@ namespace DbContextAdoNet.Extensions
             return source;
         }
 
-        
-       
+        public static string GetColumnValue(this IDataReader reader, string column)
+        {
+            if (reader.GetName(0).ToLower() == column.ToLower())
+            {
+                if (!reader.IsDBNull(0))
+                {
+                    return (reader.GetValue(0).ToString());
+                }
+            }
+
+            return null;
+
+        }
+
     }
 }

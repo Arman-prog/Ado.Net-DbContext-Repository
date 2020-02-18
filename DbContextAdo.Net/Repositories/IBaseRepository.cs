@@ -2,9 +2,13 @@
 
 namespace DbContextAdoNet.Repositories
 {
-    interface IBaseRepository<TEntity> where TEntity: class, new()
+    public interface IBaseRepository<TEntity> where TEntity : class, new()
     {
         IEnumerable<TEntity> AsEnumerable();
         void Add(TEntity model);
+
+        bool RemoveAt(int id);
+
+        bool Contains(string column, string value);
     }
 }

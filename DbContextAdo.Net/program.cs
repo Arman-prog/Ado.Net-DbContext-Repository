@@ -15,7 +15,7 @@ namespace DbContextAdoNet
         static void Main()
         {
             var context = new DbContext(connectionString);
-
+            /*
             BaseRepository<Student> studentrep = new BaseRepository<Student>(context);
             var studentlist = studentrep.AsEnumerable().ToList();
 
@@ -69,7 +69,7 @@ namespace DbContextAdoNet
                Console.WriteLine(item);
            }
 
-           /*
+           */
             var rep = new BaseRepository<University>(context);
 
             SqlParameter par1 = new SqlParameter("Name", "MyTEST_NEW");
@@ -85,14 +85,9 @@ namespace DbContextAdoNet
                 PhoneNumber = "+3665555"
             };
 
-            rep.Add(univer);
-            var list = rep.AsEnumerable().ToList();
-
-            foreach (University item in list)
-            {
-                Console.WriteLine(item);
-            }
-            */
+            Console.WriteLine(rep.RemoveAt(1001));
+            
+            
         }
     }
 
