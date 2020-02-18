@@ -46,12 +46,12 @@ namespace DbContextAdoNet
                     connection.Open();
 
                 SqlCommand command = new SqlCommand(sqlexpression, connection);
-                SqlParameter idParam = new SqlParameter
-                {
-                    ParameterName = "@id",
-                    SqlDbType = SqlDbType.Int,
-                    Direction = ParameterDirection.Output
-                };
+                //SqlParameter idParam = new SqlParameter
+                //{
+                //    ParameterName = "@id",
+                //    SqlDbType = SqlDbType.Int,
+                //    Direction = ParameterDirection.Output
+                //};
                 command.Parameters.AddRange(parameters);
                 //command.Parameters.Add(idParam);
 
