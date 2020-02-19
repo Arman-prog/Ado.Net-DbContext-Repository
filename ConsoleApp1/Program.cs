@@ -1,21 +1,21 @@
-﻿using DbContextAdoNet.Repositories;
+﻿using DbContextAdoNet;
+using DbContextAdoNet.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
+using ConsoleApp1.Models;
 
-namespace DbContextAdoNet
+namespace ConsoleApp1
 {
     class Program
     {
         public static string connectionString = @"Data Source=(localdb)\ProjectsV12;
                               Initial Catalog=EducationDB;Integrated Security=True";
-
-        static void Main()
+        static void Main(string[] args)
         {
             var context = new DbContext(connectionString);
-            
+
             /*
             BaseRepository<Student> studentrep = new BaseRepository<Student>(context);
             var studentlist = studentrep.AsEnumerable().ToList();
@@ -75,22 +75,19 @@ namespace DbContextAdoNet
 
             University univer1 = new University
             {
-                Name="Slavonakan",
-                AddressId=3,
-                Email="addaa@aaaa.am",
-                PhoneNumber="+374444444"
+                Name = "Slavonakan",
+                AddressId = 3,
+                Email = "addaa@aaaa.am",
+                PhoneNumber = "+374444444"
             };
 
-            rep.Add(univer1);
-            University univer2 = new University
-            {
-                DestroyDate = DateTime.Now
-            };
-            
+            //rep.Add(univer1);
 
-        Console.WriteLine(rep.RemoveAt(2004));
-            
-            
+            Console.WriteLine(rep.RemoveAt(4001));
+
+
+
+
         }
     }
 

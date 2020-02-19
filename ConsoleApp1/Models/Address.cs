@@ -1,6 +1,6 @@
 ﻿using DbContextAdoNet.Attributes;
 
-namespace DbContextAdoNet
+namespace ConsoleApp1.Models
 {
     [TableName("Address")]
     public class Address
