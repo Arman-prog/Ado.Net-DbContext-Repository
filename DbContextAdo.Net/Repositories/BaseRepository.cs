@@ -26,9 +26,9 @@ namespace DbContextAdoNet.Repositories
             }
         }
 
-        public void Add(TModel model)
+        public bool Add(TModel model)
         {
-            _dbContext.Insert(model.GetTableName(), model.ToSqlParameter());
+           return _dbContext.Insert(model.GetTableName(), model.ToSqlParameter());
         }
 
         public bool RemoveAt(int id)
@@ -36,8 +36,7 @@ namespace DbContextAdoNet.Repositories
             TModel model = new TModel();
             if (Contains("Id",id.ToString()))
             {
-                _dbContext.Delete(model.GetTableName(), id);
-                return true;
+               return _dbContext.Delete(model.GetTableName(), id);              
             }
             return false;
         }
@@ -46,8 +45,7 @@ namespace DbContextAdoNet.Repositories
         {           
             if (Contains("Id",id.ToString()))
             {
-                _dbContext.Update(model.GetTableName(), id, model.ToSqlParameter());
-                return true;
+               return _dbContext.Update(model.GetTableName(), id, model.ToSqlParameter());                
             }
             return false;
         }

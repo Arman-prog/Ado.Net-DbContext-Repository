@@ -43,65 +43,92 @@ namespace DbContextAdoNet
                     connection.Open();
                 var query = string.Format(Queries.selecFromColumn, column, tablename);
                 SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader dataReader = command.ExecuteReader();
-
-                while (dataReader.Read())
+                using (SqlDataReader dataReader = command.ExecuteReader())
                 {
-                    yield return dataReader.GetColumnValue(column);
+                    while (dataReader.Read())
+                    {
+                        yield return dataReader.GetColumnValue(column);
+                    }
                 }
-
-                dataReader.Close();
             }
 
         }
 
 
-        public void Insert(string tablename, params SqlParameter[] parameters)
+        public bool Insert(string tablename, params SqlParameter[] parameters)
         {
             var sqlparams = Queries.GetInsertParams(parameters);
             string sqlexpression = string.Format(Queries.insertWithParams, tablename, sqlparams.Column, sqlparams.Value);
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            
+            try
             {
-                if (connection.State != ConnectionState.Open)
-                    connection.Open();
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    if (connection.State != ConnectionState.Open)
+                        connection.Open();
 
-                SqlCommand command = new SqlCommand(sqlexpression, connection);
-                command.Parameters.AddRange(parameters);
-                command.ExecuteNonQuery();
+                    using (SqlCommand command = new SqlCommand(sqlexpression, connection))
+                    {
+                        command.Parameters.AddRange(parameters);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                return true;
+            }
+            catch (System.Exception)
+            {
+                return false;
             }
 
         }
 
-        public void Update(string tablename, int id, params SqlParameter[] parameter)
+        public bool Update(string tablename, int id, params SqlParameter[] parameter)
         {
             string sqlparams = Queries.GetUpdateParams(parameter);
             string sqlexpression = string.Format(Queries.updateWithParam,
                  tablename, sqlparams, id);
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                if (connection.State != ConnectionState.Open)
-                    connection.Open();
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    if (connection.State != ConnectionState.Open)
+                        connection.Open();
 
-                SqlCommand command = new SqlCommand(sqlexpression, connection);
-                command.Parameters.AddRange(parameter);
-                command.ExecuteNonQuery();
+                    using (SqlCommand command = new SqlCommand(sqlexpression, connection))
+                    {
+                        command.Parameters.AddRange(parameter);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                return true;
+            }
+            catch (System.Exception)
+            {
+                return false;
             }
 
         }
 
-        public void Delete(string tablename, int id)
+        public bool Delete(string tablename, int id)
         {
             string sqlexpression = string.Format(Queries.deleteWithId, tablename, id);
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                if (connection.State != ConnectionState.Open)
-                    connection.Open();
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    if (connection.State != ConnectionState.Open)
+                        connection.Open();
 
-                SqlCommand command = new SqlCommand(sqlexpression, connection);
-                command.ExecuteNonQuery();
+                    using (SqlCommand command = new SqlCommand(sqlexpression, connection))
+                        command.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (System.Exception)
+            {
+                return false;
             }
 
         }

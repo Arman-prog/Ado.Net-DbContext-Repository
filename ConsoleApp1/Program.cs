@@ -75,15 +75,17 @@ namespace ConsoleApp1
 
             University univer1 = new University
             {
-                Name = "Slavonakan",
-                AddressId = 3,
-                Email = "addaa@aaaa.am",
-                PhoneNumber = "+374444444"
+                Name = "Taterakan",
+                AddressId = 2,
+                Email = "ttttt@aaaa.am",
+                PhoneNumber = "+374333333"
             };
 
-            //rep.Add(univer1);
+            Console.WriteLine("ADD " + rep.Add(univer1));
 
-            Console.WriteLine(rep.RemoveAt(4001));
+            Console.WriteLine("UPDATE "+rep.Update(2011,new University { DestroyDate=DateTime.Now}));
+
+            Console.WriteLine("REMOVE "+rep.RemoveAt(4001));
 
 
 
