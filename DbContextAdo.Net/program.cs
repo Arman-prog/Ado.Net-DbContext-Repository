@@ -15,6 +15,7 @@ namespace DbContextAdoNet
         static void Main()
         {
             var context = new DbContext(connectionString);
+            
             /*
             BaseRepository<Student> studentrep = new BaseRepository<Student>(context);
             var studentlist = studentrep.AsEnumerable().ToList();
@@ -72,20 +73,22 @@ namespace DbContextAdoNet
            */
             var rep = new BaseRepository<University>(context);
 
-            SqlParameter par1 = new SqlParameter("Name", "MyTEST_NEW");
-            SqlParameter par2 = new SqlParameter("DestroyDate", new DateTime(2020, 12, 20));
-            SqlParameter par3 = new SqlParameter("PhoneNumber", "+37400000");
-            SqlParameter par4 = new SqlParameter("Gender", 1);
-
-            University univer = new University
+            University univer1 = new University
             {
-                Name = "Test",
-                AddressId = 2,
-                Email = "Test@test.am",
-                PhoneNumber = "+3665555"
+                Name="Slavonakan",
+                AddressId=3,
+                Email="addaa@aaaa.am",
+                PhoneNumber="+374444444"
             };
 
-            Console.WriteLine(rep.RemoveAt(1001));
+            rep.Add(univer1);
+            University univer2 = new University
+            {
+                DestroyDate = DateTime.Now
+            };
+            
+
+        Console.WriteLine(rep.RemoveAt(2004));
             
             
         }

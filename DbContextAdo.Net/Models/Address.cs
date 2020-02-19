@@ -2,6 +2,7 @@
 
 namespace DbContextAdoNet
 {
+    [TableName("Address")]
     public class Address
     {
         [Key]

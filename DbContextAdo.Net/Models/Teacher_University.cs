@@ -3,6 +3,7 @@ using System;
 
 namespace DbContextAdoNet
 {
+    [TableName("Teacher_University")]
     public class Teacher_University
     {
         [Key]

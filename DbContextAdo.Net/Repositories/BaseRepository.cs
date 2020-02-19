@@ -32,26 +32,30 @@ namespace DbContextAdoNet.Repositories
         }
 
         public bool RemoveAt(int id)
-        {            
-            var type = typeof(TModel);
+        {
+            TModel model = new TModel();
             if (Contains("Id",id.ToString()))
             {
-                _dbContext.Delete(type.Name, id);
+                _dbContext.Delete(model.GetTableName(), id);
                 return true;
             }
             return false;
         }
 
-        public void Update()
-        {
-
+        public bool Update(int id,TModel model)
+        {           
+            if (Contains("Id",id.ToString()))
+            {
+                _dbContext.Update(model.GetTableName(), id, model.ToSqlParameter());
+                return true;
+            }
+            return false;
         }
 
-
         public bool Contains(string column, string value)
-        {
-            var type = typeof(TModel);
-            var values = _dbContext.GetValues(type.Name, column).ToList();
+        {            
+            TModel model = new TModel();
+            var values = _dbContext.GetValues(model.GetTableName(), column).ToList();
             return values.Contains(value);
         }
 

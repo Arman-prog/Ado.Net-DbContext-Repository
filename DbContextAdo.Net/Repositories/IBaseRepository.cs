@@ -6,9 +6,8 @@ namespace DbContextAdoNet.Repositories
     {
         IEnumerable<TEntity> AsEnumerable();
         void Add(TEntity model);
-
         bool RemoveAt(int id);
-
+        bool Update(int id, TEntity model);
         bool Contains(string column, string value);
     }
 }
