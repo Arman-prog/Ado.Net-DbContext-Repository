@@ -1,7 +1,7 @@
 ﻿using DbContextAdoNet.Attributes;
 using System;
 
-namespace ConsoleApp1.Models
+namespace Repository.Models
 {
     [TableName("Teacher_University")]
     public class Teacher_University

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace DbContextAdoNet.Repositories
+namespace Repository.Impl
 {
     public interface IBaseRepository<TEntity> where TEntity : class, new()
     {
-        IEnumerable<TEntity> AsEnumerable();
+        IEnumerable<TEntity> AsReadable();
         bool Add(TEntity model);
         bool RemoveAt(int id);
         bool Update(int id, TEntity model);

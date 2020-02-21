@@ -1,10 +1,9 @@
-﻿using DbContextAdoNet.DataAccess;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using DbContextAdoNet.Extensions;
 
-namespace DbContextAdoNet
+namespace DbContextAdoNet.DataAccess
 {
     public class DbContext
     {

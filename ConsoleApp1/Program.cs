@@ -1,10 +1,10 @@
-﻿using DbContextAdoNet;
-using DbContextAdoNet.Repositories;
+﻿using Repository;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using ConsoleApp1.Models;
+using Repository.Models;
+using DbContextAdoNet.DataAccess;
 
 namespace ConsoleApp1
 {

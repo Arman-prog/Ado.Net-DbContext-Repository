@@ -1,9 +1,10 @@
 ﻿using DbContextAdoNet.DataAccess;
 using DbContextAdoNet.Extensions;
+using Repository.Impl;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DbContextAdoNet.Repositories
+namespace Repository
 {
     public class BaseRepository<TModel> : IBaseRepository<TModel>
          where TModel : class, new()
@@ -15,7 +16,7 @@ namespace DbContextAdoNet.Repositories
             this._dbContext = dbContext;
         }
 
-        public IEnumerable<TModel> AsEnumerable()
+        public IEnumerable<TModel> AsReadable()
         {
             var type = typeof(TModel);
             string query = string.Format(Queries.selectWithTableName, type.Name);

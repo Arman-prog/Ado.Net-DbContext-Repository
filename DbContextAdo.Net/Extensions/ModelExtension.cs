@@ -5,9 +5,9 @@ using System.Reflection;
 
 namespace DbContextAdoNet.Extensions
 {
-    internal static class ModelExtension
+    public static class ModelExtension
     {
-        internal static SqlParameter[] ToSqlParameter<TModel>(this TModel model)
+        public static SqlParameter[] ToSqlParameter<TModel>(this TModel model)
             where TModel : class, new()
         {
             var type = model.GetType();
@@ -26,7 +26,7 @@ namespace DbContextAdoNet.Extensions
             return parameters;
         }
 
-        internal static string GetTableName<TModel>(this TModel model)
+        public static string GetTableName<TModel>(this TModel model)
             where TModel : class, new()
         {
             var type = model.GetType();

@@ -1,10 +1,9 @@
-﻿
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using System.Text;
 
 namespace DbContextAdoNet.DataAccess
 {
-    internal class Queries
+    public class Queries
     {
         public const string insertWithParams = "INSERT INTO {0} ({1}) VALUES ({2})";//SELECT CAST(scope_identity() AS int)";
         public const string updateWithParam = "UPDATE {0} SET {1} WHERE Id={2}";

@@ -1,6 +1,6 @@
 ﻿using DbContextAdoNet.Attributes;
 
-namespace ConsoleApp1.Models
+namespace Repository.Models
 {
     public class Teacher
     {
