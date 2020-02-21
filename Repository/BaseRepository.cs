@@ -27,7 +27,7 @@ namespace Repository
             }
         }
 
-        public bool Add(TModel model)
+        public int Add(TModel model)
         {
            return _dbContext.Insert(model.GetTableName(), model.ToSqlParameter());
         }

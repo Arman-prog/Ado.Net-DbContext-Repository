@@ -83,9 +83,9 @@ namespace ConsoleApp1
 
             Console.WriteLine("ADD " + rep.Add(univer1));
 
-            Console.WriteLine("UPDATE "+rep.Update(2011,new University { DestroyDate=DateTime.Now}));
+            Console.WriteLine("UPDATE " + rep.Update(2011, new University { DestroyDate = DateTime.Now }));
 
-            Console.WriteLine("REMOVE "+rep.RemoveAt(4001));
+            Console.WriteLine("REMOVE " + rep.RemoveAt(8002));
 
 
 

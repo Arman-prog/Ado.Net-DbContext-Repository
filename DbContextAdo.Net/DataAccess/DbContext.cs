@@ -54,7 +54,7 @@ namespace DbContextAdoNet.DataAccess
         }
 
 
-        public bool Insert(string tablename, params SqlParameter[] parameters)
+        public int Insert(string tablename, params SqlParameter[] parameters)
         {
             var sqlparams = Queries.GetInsertParams(parameters);
             string sqlexpression = string.Format(Queries.insertWithParams, tablename, sqlparams.Column, sqlparams.Value);
@@ -69,14 +69,14 @@ namespace DbContextAdoNet.DataAccess
                     using (SqlCommand command = new SqlCommand(sqlexpression, connection))
                     {
                         command.Parameters.AddRange(parameters);
-                        command.ExecuteNonQuery();
+                       return (int)command.ExecuteScalar();
                     }
                 }
-                return true;
+               
             }
             catch (System.Exception)
             {
-                return false;
+                throw new System.Exception();
             }
 
         }
